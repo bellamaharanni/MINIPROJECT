@@ -2,6 +2,30 @@
 <html>
 <head>
     <title>Toko Buku</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
 </head>
 <body>
     <div id="toko-info">
@@ -12,7 +36,7 @@
     
     <div id="daftar-buku">
         <h2>Daftar Buku</h2>
-        <table border="1">
+        <table>
             <thead>
                 <tr>
                     <th>Judul Buku</th>
