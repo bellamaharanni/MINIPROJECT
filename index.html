@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Toko Buku</title>
+</head>
+<body>
+    <div id="toko-info">
+        <!-- Nama toko, pengarang, alamat ditampilkan di sini -->
+    </div>
+    <table id="tabel-buku">
+        <thead>
+            <tr>
+                <th>Judul Buku</th>
+                <th>Pengarang</th>
+                <th>Tahun Terbit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Koleksi buku ditampilkan di sini -->
+        </tbody>
+    </table>
+
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'toko_buku.json', true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    // Menampilkan informasi toko
+                    document.getElementById('toko-info').innerHTML = '<div><strong>Nama Toko:</strong> ' + data.nama_toko + '</div>' +
+                                                                      '<div><strong>Pengarang:</strong> ' + data.pengarang + '</div>' +
+                                                                      '<div><strong>Alamat:</strong> ' + data.alamat + '</div>';
+                    // Menampilkan koleksi buku
+                    var tabelBuku = document.getElementById('tabel-buku').getElementsByTagName('tbody')[0];
+                    data.koleksi_buku.forEach(function(buku) {
+                        var row = tabelBuku.insertRow();
+                        row.insertCell(0).innerText = buku.judul;
+                        row.insertCell(1).innerText = buku.pengarang;
+                        row.insertCell(2).innerText = buku.tahun_terbit;
+                    });
+                } else {
+                    console.error('Gagal memuat data toko buku');
+                }
+            }
+        };
+        xhr.send();
+    </script>
+</body>
+</html>
