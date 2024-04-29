@@ -5,45 +5,54 @@
 </head>
 <body>
     <div id="toko-info">
-        <!-- Nama toko, pengarang, alamat ditampilkan di sini -->
+        <h2>Nama Toko Buku</h2>
+        <p>Pengarang: <span id="pengarang"></span></p>
+        <p>Alamat: <span id="alamat"></span></p>
     </div>
-    <table id="tabel-buku">
-        <thead>
-            <tr>
-                <th>Judul Buku</th>
-                <th>Pengarang</th>
-                <th>Tahun Terbit</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Koleksi buku ditampilkan di sini -->
-        </tbody>
-    </table>
+    
+    <div id="daftar-buku">
+        <h2>Daftar Buku</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Judul Buku</th>
+                    <th>Pengarang</th>
+                    <th>Tahun Terbit</th>
+                    <th>Harga</th>
+                </tr>
+            </thead>
+            <tbody id="buku-list">
+            </tbody>
+        </table>
+    </div>
 
     <script>
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'toko_buku.json', true);
         xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    var data = JSON.parse(xhr.responseText);
-                    // Menampilkan informasi toko
-                    document.getElementById('toko-info').innerHTML = '<div><strong>Nama Toko:</strong> ' + data.nama_toko + '</div>' +
-                                                                      '<div><strong>Pengarang:</strong> ' + data.pengarang + '</div>' +
-                                                                      '<div><strong>Alamat:</strong> ' + data.alamat + '</div>';
-                    // Menampilkan koleksi buku
-                    var tabelBuku = document.getElementById('tabel-buku').getElementsByTagName('tbody')[0];
-                    data.koleksi_buku.forEach(function(buku) {
-                        var row = tabelBuku.insertRow();
-                        row.insertCell(0).innerText = buku.judul;
-                        row.insertCell(1).innerText = buku.pengarang;
-                        row.insertCell(2).innerText = buku.tahun_terbit;
-                    });
-                } else {
-                    console.error('Gagal memuat data toko buku');
-                }
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                document.getElementById("pengarang").innerText = data["pengarang"];
+                document.getElementById("alamat").innerText = data["alamat"];
+                var bukuList = document.getElementById("buku-list");
+                data["koleksi"].forEach(function(buku) {
+                    var row = document.createElement("tr");
+                    var judulCell = document.createElement("td");
+                    judulCell.innerText = buku["judul"];
+                    var pengarangCell = document.createElement("td");
+                    pengarangCell.innerText = buku["pengarang"];
+                    var tahunCell = document.createElement("td");
+                    tahunCell.innerText = buku["tahun"];
+                    var hargaCell = document.createElement("td");
+                    hargaCell.innerText = buku["harga"];
+                    row.appendChild(judulCell);
+                    row.appendChild(pengarangCell);
+                    row.appendChild(tahunCell);
+                    row.appendChild(hargaCell);
+                    bukuList.appendChild(row);
+                });
             }
         };
+        xhr.open("GET", "toko_buku.json", true);
         xhr.send();
     </script>
 </body>

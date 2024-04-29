@@ -1,0 +1,19 @@
+{
+    "nama": "Toko Buku ABC",
+    "pengarang": "John Doe",
+    "alamat": "Jl. Contoh No. 123",
+    "koleksi": [
+        {
+            "judul": "Pemrograman Java",
+            "pengarang": "Alice Smith",
+            "tahun": 2020,
+            "harga": 150000
+        },
+        {
+            "judul": "Belajar HTML",
+            "pengarang": "Bob Johnson",
+            "tahun": 2019,
+            "harga": 100000
+        }
+    ]
+}
