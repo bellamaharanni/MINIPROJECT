@@ -1,0 +1,19 @@
+{
+    "nama": "Toko Buku Grameds",
+    "pengarang": "Bela Abel",
+    "alamat": "Jalan Kenangan Indah No. 1",
+    "koleksi": [
+        {
+            "judul": "Pemrograman Website",
+            "pengarang": "Alibaba Bieber",
+            "tahun": 2023,
+            "harga": 150000
+        },
+        {
+            "judul": "Cara Mudah Belajar HTML",
+            "pengarang": "Alexander Java",
+            "tahun": 2019,
+            "harga": 120000
+        }
+    ]
+}
