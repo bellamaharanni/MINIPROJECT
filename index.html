@@ -51,33 +51,7 @@
     </div>
 
     <script>
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var data = JSON.parse(this.responseText);
-                document.getElementById("pengarang").innerText = data["pengarang"];
-                document.getElementById("alamat").innerText = data["alamat"];
-                var bukuList = document.getElementById("buku-list");
-                data["koleksi"].forEach(function(buku) {
-                    var row = document.createElement("tr");
-                    var judulCell = document.createElement("td");
-                    judulCell.innerText = buku["judul"];
-                    var pengarangCell = document.createElement("td");
-                    pengarangCell.innerText = buku["pengarang"];
-                    var tahunCell = document.createElement("td");
-                    tahunCell.innerText = buku["tahun"];
-                    var hargaCell = document.createElement("td");
-                    hargaCell.innerText = buku["harga"];
-                    row.appendChild(judulCell);
-                    row.appendChild(pengarangCell);
-                    row.appendChild(tahunCell);
-                    row.appendChild(hargaCell);
-                    bukuList.appendChild(row);
-                });
-            }
-        };
-        xhr.open("GET", "toko_buku.json", true);
-        xhr.send();
+       
     </script>
 </body>
 </html>
